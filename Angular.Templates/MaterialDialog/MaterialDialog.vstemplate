@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Angular Material Dialog Component</Name>
+    <Description>Creates the set of files for a dialog component based on Angular's Material package.</Description>
+    <Icon>Angular.ico</Icon>
+    <TemplateID>8bfd3318-7da4-4ecf-a9a2-b7977912f7af</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <TemplateGroupID>AspNetCore</TemplateGroupID>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <DefaultName>component1-dialog.component.ts</DefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <References />
+    <ProjectItem ReplaceParameters="true" TargetFileName="$folderName$\\$tsFileName$">material-dialog.component.ts</ProjectItem>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$folderName$\\$htmlFileName$">material-dialog.component.html</ProjectItem>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$folderName$\\$cssFileName$">material-dialog.component.scss</ProjectItem>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Angular.Wizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=647581456131c645</Assembly>
+    <FullClassName>Angular.Wizards.MaterialDialog.MaterialDialogWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

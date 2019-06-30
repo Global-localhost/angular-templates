@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Angular Component</Name>
+    <Description>Creates a basic component in typescript. Creates the html, ts and scss files.</Description>
+    <Icon>Angular.ico</Icon>
+    <TemplateID>73bb2d8d-5277-4ba7-880b-75191db7c3b3</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <TemplateGroupID>AspNetCore</TemplateGroupID>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <DefaultName>component1.component.ts</DefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <References />
+    <ProjectItem ReplaceParameters="true" TargetFileName="$folderName$\\$tsFileName$">component.ts</ProjectItem>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$folderName$\\$htmlFileName$">component.html</ProjectItem>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$folderName$\\$cssFileName$">component.scss</ProjectItem>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Angular.Wizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=647581456131c645</Assembly>
+    <FullClassName>Angular.Wizards.Angular.Component.AngularComponentWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

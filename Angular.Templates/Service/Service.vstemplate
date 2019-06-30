@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Angular Service</Name>
+    <Description>Creates a basic service typescript file</Description>
+    <Icon>Angular.ico</Icon>
+    <TemplateID>60710de8-b0ad-4d0c-9ad3-ad924b76dace</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <TemplateGroupID>AspNetCore</TemplateGroupID>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <DefaultName>service1.service.ts</DefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <References />
+    <ProjectItem ReplaceParameters="true" TargetFileName="$fileName$">service.ts</ProjectItem>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Angular.Wizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=647581456131c645</Assembly>
+    <FullClassName>Angular.Wizards.Service.ServiceWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Angular Page Component</Name>
+    <Description>Creates the set of files for a page component.</Description>
+    <Icon>Angular.ico</Icon>
+    <TemplateID>6c916c03-81f8-4f57-8137-81e2ba0d339a</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <TemplateGroupID>AspNetCore</TemplateGroupID>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <DefaultName>component1-page.component.ts</DefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <References />
+    <ProjectItem ReplaceParameters="true" TargetFileName="$folderName$\\$tsFileName$">page-component.ts</ProjectItem>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$folderName$\\$htmlFileName$">page-component.html</ProjectItem>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$folderName$\\$cssFileName$">page-component.scss</ProjectItem>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Angular.Wizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=647581456131c645</Assembly>
+    <FullClassName>Angular.Wizards.Page.PageWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

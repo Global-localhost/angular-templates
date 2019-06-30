@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Angular Model Class</Name>
+    <Description>Creates a basic class for a model in typescript.</Description>
+    <Icon>Angular.ico</Icon>
+    <TemplateID>5526f87f-0f68-477b-b9e3-c17fae272517</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <TemplateGroupID>AspNetCore</TemplateGroupID>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <DefaultName>model1.ts</DefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <References />
+    <ProjectItem ReplaceParameters="true" TargetFileName="$fileName$">model.ts</ProjectItem>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Angular.Wizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=647581456131c645</Assembly>
+    <FullClassName>Angular.Wizards.Model.ModelWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>
