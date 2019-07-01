@@ -54,32 +54,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiService\ApiServiceWizard.cs" />
-    <Compile Include="BaseOptionsDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BaseOptionsDialog.Designer.cs">
-      <DependentUpon>BaseOptionsDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="BaseWizard.cs" />
-    <Compile Include="Component\ComponentWizard.cs" />
-    <Compile Include="Component\ComponentWizardDialog.cs">
+    <Compile Include="CommonOptionsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Component\ComponentWizardDialog.Designer.cs">
-      <DependentUpon>ComponentWizardDialog.cs</DependentUpon>
+    <Compile Include="CommonOptionsDialog.Designer.cs">
+      <DependentUpon>CommonOptionsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Component\ComponentWizard.cs" />
     <Compile Include="Model\ModelWizard.cs" />
     <Compile Include="Model\ModelWizardDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Model\ModelWizardDialog.Designer.cs">
       <DependentUpon>ModelWizardDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Page\PageWizardDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Page\PageWizardDialog.Designer.cs">
-      <DependentUpon>PageWizardDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Page\PageWizard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,14 +83,11 @@
     <None Include="key.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Component\ComponentWizardDialog.resx">
-      <DependentUpon>ComponentWizardDialog.cs</DependentUpon>
+    <EmbeddedResource Include="CommonOptionsDialog.resx">
+      <DependentUpon>CommonOptionsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Model\ModelWizardDialog.resx">
       <DependentUpon>ModelWizardDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Page\PageWizardDialog.resx">
-      <DependentUpon>PageWizardDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,6 +11,12 @@ namespace Angular.Wizards
     public class BaseWizard : IWizard
     {
         protected bool _createFiles = false;
+        protected string _apiServiceImports = "";
+        protected string _dialogImports = "";
+        protected string _modelImports = "";
+        protected string _packageImports = "";
+        protected string _serviceImports = "";
+        protected string _ctorInjections = "";
 
         public virtual void BeforeOpeningFile(ProjectItem projectItem)
         {
@@ -38,19 +44,81 @@ namespace Angular.Wizards
             return _createFiles;
         }
 
-        protected bool ShowOptionDialog(BaseOptionsDialog optionsDialog, Dictionary<string, string> replacementsDictionary)
+        /// <summary>
+        /// Populates the Imports and Injections class fields based on the selected items of the options dialog.
+        /// </summary>
+        /// <param name="optionsDialog"></param>
+        protected void CreateOptionalImports(CommonOptionsDialog optionsDialog)
+        {
+            foreach (string item in optionsDialog.SelectedApiServices)
+            {
+                IEnumerable<string> parts = Utilities.Naming.SplitName(item);
+                _apiServiceImports += $"\r\nimport {{ {item}ApiService }} from \"src/app/services/{string.Join("-", parts)}-api.service\";";
+
+                _ctorInjections += $",\r\n{" ".PadLeft(8)}private {Utilities.Naming.ToCamelCase(parts)}ApiService: {Utilities.Naming.ToPascalCase(parts)}ApiService";
+            }
+
+            bool isDialogAdded = false;
+            foreach (string item in optionsDialog.SelectedDialogs)
+            {
+                IEnumerable<string> parts = Utilities.Naming.SplitName(item);
+                _dialogImports += $"\r\nimport {{ {item}DialogComponent }} from \"src/app/dialogs/{string.Join("-", parts)}-dialog/{string.Join("-", parts)}-dialog.component\";";
+
+                if (!isDialogAdded)
+                {
+                    _packageImports += $"\r\nimport {{ MatDialogConfig, MatDialog }} from \"@angular/material\";";
+
+                    // add to the beginning
+                    _ctorInjections = $",\r\n{" ".PadLeft(8)}private dialog: MatDialog" + _ctorInjections;
+
+                    isDialogAdded = true;
+                }
+            }
+
+            foreach (string item in optionsDialog.SelectedModels)
+            {
+                IEnumerable<string> parts = Utilities.Naming.SplitName(item);
+                _modelImports += $"\r\nimport {{ {item} }} from \"src/app/models/{Utilities.Naming.ToPascalCase(parts)}\";";
+
+                // models are not injected into the constructor
+            }
+
+            foreach (string item in optionsDialog.SelectedServices)
+            {
+                IEnumerable<string> parts = Utilities.Naming.SplitName(item);
+                _serviceImports += $"\r\nimport {{ {item}Service }} from \"src/app/services/{string.Join("-", parts)}.service\";";
+
+                _ctorInjections += $",\r\n{" ".PadLeft(8)}private {Utilities.Naming.ToCamelCase(parts)}Service: {Utilities.Naming.ToPascalCase(parts)}Service";
+            }
+        }
+
+        /// <summary>
+        /// Shows the <see cref="CommonOptionsDialog"/>. Use the "ShowXxx" properties on the dialog to exclude types of files/classes
+        /// that can be referenced by the new file.
+        /// </summary>
+        /// <param name="optionsDialog"></param>
+        /// <param name="replacementsDictionary"></param>
+        /// <returns></returns>
+        protected bool ShowOptionDialog(CommonOptionsDialog optionsDialog, Dictionary<string, string> replacementsDictionary)
         {
             // if they are creating this item outside the ClientApp, allow but don't offer any options
             if (!Utilities.Path.IsInClientApp(replacementsDictionary))
                 return true;
 
-            optionsDialog.ApiServices = Utilities.File.GetApiServiceFileNames(replacementsDictionary);
-            optionsDialog.Dialogs = Utilities.File.GetDialogFileNames(replacementsDictionary);
-            optionsDialog.Models = Utilities.File.GetModelFileNames(replacementsDictionary);
-            optionsDialog.Services = Utilities.File.GetServiceFileNames(replacementsDictionary);
+            if (optionsDialog.ShowApiServices)
+                optionsDialog.ApiServices = Utilities.File.GetApiServiceFileNames(replacementsDictionary);
+            if (optionsDialog.ShowDialogs)
+                optionsDialog.Dialogs = Utilities.File.GetDialogFileNames(replacementsDictionary);
+            if (optionsDialog.ShowModels)
+                optionsDialog.Models = Utilities.File.GetModelFileNames(replacementsDictionary);
+            if (optionsDialog.ShowServices)
+                optionsDialog.Services = Utilities.File.GetServiceFileNames(replacementsDictionary);
 
             // if there is nothing to choose, skip the dialog
-            if (optionsDialog.ApiServices.Count == 0 && optionsDialog.Services.Count == 0 && optionsDialog.Models.Count == 0 && optionsDialog.Dialogs.Count == 0)
+            if ((!optionsDialog.ShowApiServices || optionsDialog.ApiServices.Count == 0)
+                && (!optionsDialog.ShowServices || optionsDialog.Services.Count == 0)
+                && (!optionsDialog.ShowModels || optionsDialog.Models.Count == 0)
+                && (!optionsDialog.ShowDialogs || optionsDialog.Dialogs.Count == 0))
                 return true;
 
             optionsDialog.ApiServices.ToList().Sort();

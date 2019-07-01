@@ -1,5 +1,5 @@
 ﻿// npm Packages
-import { Component, OnInit } from "@angular/core";$npmImports$
+import { Component, OnInit } from "@angular/core";$packageImports$
 
 // API Services$apiImports$
 
@@ -16,8 +16,7 @@ import { Component, OnInit } from "@angular/core";$npmImports$
 })
 export class $className$ implements OnInit {
 
-    constructor($constructorInjects$
-    ) {
+    constructor($constructorInjects$) {
 
     }
 

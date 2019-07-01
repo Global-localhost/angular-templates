@@ -21,16 +21,38 @@ namespace Angular.Wizards.Service
             }
             IEnumerable<string> itemParts = Utilities.Naming.SplitName(itemName);
 
+            CommonOptionsDialog optionsDialog = new CommonOptionsDialog
+            {
+                Text = "Angular Service Class Options",
+                ShowDialogs = false
+            };
+            if (!ShowOptionDialog(optionsDialog, replacementsDictionary))
+                return;
+
+            _createFiles = true;
+
+            CreateOptionalImports(optionsDialog);
+
             // the name of the class
             replacementsDictionary.Add("$className$", $"{Utilities.Naming.ToPascalCase(itemParts)}Service");
 
             // the name of the file
             replacementsDictionary.Add("$fileName$", $"{string.Join("-", itemParts)}.service.ts");
+
+            // optional files
+            replacementsDictionary.Add("$apiImports$", _apiServiceImports);
+            replacementsDictionary.Add("$dialogImports$", _dialogImports);
+            replacementsDictionary.Add("$modelImports$", _modelImports);
+            replacementsDictionary.Add("$packageImports$", _packageImports);
+            replacementsDictionary.Add("$serviceImports$", _serviceImports);
+
+            // additional constructor items - since we have no default items, remove the initial comma
+            replacementsDictionary.Add("$constructorInjects$", (string.IsNullOrWhiteSpace(_ctorInjections) ? _ctorInjections : _ctorInjections.Substring(1)));
         }
 
         public override bool ShouldAddProjectItem(string filePath)
         {
-            return true;
+            return _createFiles;
         }
     }
 }

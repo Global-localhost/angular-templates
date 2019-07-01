@@ -22,6 +22,18 @@ namespace Angular.Wizards.ApiService
             IEnumerable<string> itemParts = Utilities.Naming.SplitName(itemName);
             string modelName = Utilities.Naming.ToPascalCase(itemParts);
 
+            CommonOptionsDialog optionsDialog = new CommonOptionsDialog
+            {
+                Text = "Angular API Service Class Options",
+                ShowDialogs = false
+            };
+            if (!ShowOptionDialog(optionsDialog, replacementsDictionary))
+                return;
+
+            _createFiles = true;
+
+            CreateOptionalImports(optionsDialog);
+
             // the name of the data model
             replacementsDictionary.Add("$modelName$", modelName);
 
@@ -42,7 +54,7 @@ namespace Angular.Wizards.ApiService
 
         public override bool ShouldAddProjectItem(string filePath)
         {
-            return true;
+            return _createFiles;
         }
     }
 }
