@@ -1,13 +1,19 @@
-﻿import { Injectable } from "@angular/core";
+﻿// npm Packages
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { $modelName$ } from "../models/$modelName$";
+import { Observable } from "rxjs"; $packageImports$
+
+// API Services$apiImports$
+
+// Other Services$serviceImports$
+
+// Models$modelImports$
 
 @Injectable()
 export class $className$ {
     private readonly baseApiRoute: string = "api/$modelNameAsParameter$";
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient$constructorInjects$) { }
 
     /**
      * Loads the full $modelName$ list.

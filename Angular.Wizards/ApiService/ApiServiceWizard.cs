@@ -32,6 +32,10 @@ namespace Angular.Wizards.ApiService
 
             _createFiles = true;
 
+            // if the model wasn't selected to be included, automatically add it to the imports. It may be incorrect but the sample code requires it.
+            if (!optionsDialog.SelectedModels.Contains(modelName))
+                optionsDialog.SelectedModels.Add(modelName);
+
             CreateOptionalImports(optionsDialog);
 
             // the name of the data model
@@ -49,7 +53,14 @@ namespace Angular.Wizards.ApiService
             // the name of the file
             replacementsDictionary.Add("$fileName$", $"{string.Join("-", itemParts)}-api.service.ts");
 
-            // TODO prompt to select models (and services?)
+            // optional files
+            replacementsDictionary.Add("$apiImports$", _apiServiceImports);
+            replacementsDictionary.Add("$modelImports$", _modelImports);
+            replacementsDictionary.Add("$packageImports$", _packageImports);
+            replacementsDictionary.Add("$serviceImports$", _serviceImports);
+
+            // additional constructor items
+            replacementsDictionary.Add("$constructorInjects$", _ctorInjections);
         }
 
         public override bool ShouldAddProjectItem(string filePath)
