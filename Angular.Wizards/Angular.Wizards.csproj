@@ -62,6 +62,7 @@
       <DependentUpon>CommonOptionsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Component\ComponentWizard.cs" />
+    <Compile Include="MaterialDialog\MaterialDialogWizard.cs" />
     <Compile Include="Model\ModelWizard.cs" />
     <Compile Include="Model\ModelWizardDialog.cs">
       <SubType>Form</SubType>
@@ -76,9 +77,7 @@
     <Compile Include="Utilities\Naming.cs" />
     <Compile Include="Utilities\Path.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MaterialDialog\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="key.pfx" />
   </ItemGroup>

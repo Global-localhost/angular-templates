@@ -36,11 +36,6 @@ namespace Angular.Wizards.Model
             _createFiles = true;
         }
 
-        public override bool ShouldAddProjectItem(string filePath)
-        {
-            return _createFiles;
-        }
-
         private bool ShowOptionsDialog(object optionsDialog, string rootNamespace, string solutionDirectory)
         {
             try

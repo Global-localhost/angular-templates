@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="Angular.Extensions.e990ca13-c973-4155-b8e3-9ee4752f046b" Version="1.0" Language="en-US" Publisher="Holographic Blockchain" />
+        <Identity Id="Angular.Extensions.e990ca13-c973-4155-b8e3-9ee4752f046b" Version="0.9" Language="en-US" Publisher="Holographic Blockchain" />
         <DisplayName>Angular Templates</DisplayName>
-        <Description>Empty VSIX Project.</Description>
+        <Description xml:space="preserve">Set of templates that can be used when working with Angular projects.</Description>
+        <Preview>true</Preview>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />

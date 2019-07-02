@@ -59,10 +59,5 @@ namespace Angular.Wizards.Page
             // additional constructor items - since we have no default items, remove the initial comma
             replacementsDictionary.Add("$constructorInjects$", (string.IsNullOrWhiteSpace(_ctorInjections) ? _ctorInjections : _ctorInjections.Substring(1)));
         }
-
-        public override bool ShouldAddProjectItem(string filePath)
-        {
-            return _createFiles;
-        }
     }
 }

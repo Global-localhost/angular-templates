@@ -62,10 +62,5 @@ namespace Angular.Wizards.ApiService
             // additional constructor items
             replacementsDictionary.Add("$constructorInjects$", _ctorInjections);
         }
-
-        public override bool ShouldAddProjectItem(string filePath)
-        {
-            return _createFiles;
-        }
     }
 }

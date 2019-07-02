@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";$npmImports$
 
 // API Services$apiImports$
 
-// Other Service $serviceImports$
+// Other Services$serviceImports$
 
 // Models$modelImports$
 
@@ -14,10 +14,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";$npmImports$
     styleUrls: ["./$cssFileName$"]
 })
 export class $className$ implements OnInit {
-    $dataOutputModelVariableDeclaration$
+    private outputData: $dataOutputModelType$;
+
     constructor(
         private dialogRef: MatDialogRef<$className$>,
-        @Inject(MAT_DIALOG_DATA) private inputData: $dataInputModel$
+        @Inject(MAT_DIALOG_DATA) private inputData: $dataInputModelType$$constructorInjects$
     ) {
     }
 
@@ -28,7 +29,7 @@ export class $className$ implements OnInit {
      * Handles the OK button click event.
      */
     onOk() {
-        this.dialogRef.close($dataOutputModelVariable$);
+        this.dialogRef.close(this.outputData);
     }
 
     /**
