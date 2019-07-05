@@ -51,10 +51,10 @@ namespace Angular.Wizards.MaterialDialog
             replacementsDictionary.Add("$cssFileName$", $"{string.Join("-", itemParts)}.component.scss");
 
             // the input data type
-            replacementsDictionary.Add("$dataInputModelType$", optionsDialog.SelectedModels.Count == 1 ? optionsDialog.SelectedModels.First() : "any"); //TODO how to pull this in common dialog
+            replacementsDictionary.Add("$dataInputModelType$", optionsDialog.SelectedModels.Count == 1 ? optionsDialog.SelectedModels.First().Name : "any"); //TODO how to pull this in common dialog
 
             // the output data type, if any
-            replacementsDictionary.Add("$dataOutputModelType$", (optionsDialog.SelectedModels.Count == 1 ? optionsDialog.SelectedModels.First() : "any")); //TODO how to pull this in common dialog
+            replacementsDictionary.Add("$dataOutputModelType$", (optionsDialog.SelectedModels.Count == 1 ? optionsDialog.SelectedModels.First().Name : "any")); //TODO how to pull this in common dialog
 
             // optional files
             replacementsDictionary.Add("$apiImports$", _apiServiceImports);

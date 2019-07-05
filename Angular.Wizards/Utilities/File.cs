@@ -14,9 +14,9 @@ namespace Angular.Wizards.Utilities
         /// </summary>
         /// <param name="replacementsDictionary"></param>
         /// <returns></returns>
-        public static ICollection<string> GetApiServiceFileNames(Dictionary<string, string> replacementsDictionary)
+        public static ICollection<ClassModel> GetApiServices(Dictionary<string, string> replacementsDictionary)
         {
-            ICollection<string> fileNames = new List<string>();
+            ICollection<ClassModel> classes = new List<ClassModel>();
 
             if (Directory.Exists(Path.ApiServicesPath(replacementsDictionary)))
             {
@@ -24,11 +24,16 @@ namespace Angular.Wizards.Utilities
                 foreach (string fileName in files)
                 {
                     FileInfo file = new FileInfo(fileName);
-                    fileNames.Add(Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf("-api.service.ts")))));
+                    classes.Add(new ClassModel
+                    {
+                        FullFilePath = fileName,
+                        ImportPath = Path.ImportPath(replacementsDictionary, fileName),
+                        Name = Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf("-api.service.ts"))))
+                    });
                 }
             }
 
-            return fileNames;
+            return classes;
         }
 
         /// <summary>
@@ -36,9 +41,9 @@ namespace Angular.Wizards.Utilities
         /// </summary>
         /// <param name="replacementsDictionary"></param>
         /// <returns></returns>
-        public static ICollection<string> GetDialogFileNames(Dictionary<string, string> replacementsDictionary)
+        public static ICollection<ClassModel> GetDialogs(Dictionary<string, string> replacementsDictionary)
         {
-            ICollection<string> fileNames = new List<string>();
+            ICollection<ClassModel> classes = new List<ClassModel>();
 
             if (Directory.Exists(Path.DialogsPath(replacementsDictionary)))
             {
@@ -50,12 +55,17 @@ namespace Angular.Wizards.Utilities
                     foreach (string fileName in files)
                     {
                         FileInfo file = new FileInfo(fileName);
-                        fileNames.Add(Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf("-dialog.component.ts")))));
+                        classes.Add(new ClassModel
+                        {
+                            FullFilePath = fileName,
+                            ImportPath = Path.ImportPath(replacementsDictionary, fileName),
+                            Name = Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf("-dialog.component.ts"))))
+                        });
                     }
                 }
             }
 
-            return fileNames;
+            return classes;
         }
 
         /// <summary>
@@ -63,9 +73,9 @@ namespace Angular.Wizards.Utilities
         /// </summary>
         /// <param name="replacementsDictionary"></param>
         /// <returns></returns>
-        public static ICollection<string> GetModelFileNames(Dictionary<string, string> replacementsDictionary)
+        public static ICollection<ClassModel> GetModels(Dictionary<string, string> replacementsDictionary)
         {
-            ICollection<string> fileNames = new List<string>();
+            ICollection<ClassModel> classes = new List<ClassModel>();
 
             if (Directory.Exists(Path.ModelsPath(replacementsDictionary)))
             {
@@ -73,11 +83,16 @@ namespace Angular.Wizards.Utilities
                 foreach (string fileName in files)
                 {
                     FileInfo file = new FileInfo(fileName);
-                    fileNames.Add(Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf(".ts")))));
+                    classes.Add(new ClassModel
+                    {
+                        FullFilePath = fileName,
+                        ImportPath = Path.ImportPath(replacementsDictionary, fileName),
+                        Name = Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf(".ts"))))
+                    });
                 }
             }
 
-            return fileNames;
+            return classes;
         }
 
         /// <summary>
@@ -85,9 +100,9 @@ namespace Angular.Wizards.Utilities
         /// </summary>
         /// <param name="replacementsDictionary"></param>
         /// <returns></returns>
-        public static ICollection<string> GetServiceFileNames(Dictionary<string, string> replacementsDictionary)
+        public static ICollection<ClassModel> GetServices(Dictionary<string, string> replacementsDictionary)
         {
-            ICollection<string> fileNames = new List<string>();
+            ICollection<ClassModel> classes = new List<ClassModel>();
 
             if (Directory.Exists(Path.ServicesPath(replacementsDictionary)))
             {
@@ -99,11 +114,16 @@ namespace Angular.Wizards.Utilities
                         continue;
 
                     FileInfo file = new FileInfo(fileName);
-                    fileNames.Add(Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf(".service.ts")))));
+                    classes.Add(new ClassModel
+                    {
+                        FullFilePath = fileName,
+                        ImportPath = Path.ImportPath(replacementsDictionary, fileName),
+                        Name = Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf(".service.ts"))))
+                    });
                 }
             }
 
-            return fileNames;
+            return classes;
         }
     }
 }

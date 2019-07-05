@@ -29,6 +29,24 @@ namespace Angular.Wizards.Utilities
         }
 
         /// <summary>
+        /// Gets the path used to import a class from a file. This is the file's path below the "ClientApp" directory.
+        /// </summary>
+        /// <param name="replacementsDictionary"></param>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static string ImportPath(Dictionary<string, string> replacementsDictionary, string filePath)
+        {
+            if (!IsInClientApp(replacementsDictionary))
+                return "";
+
+            // we need to start at the directory under "ClientApp" and exclude the ".ts"
+            string partial = filePath.Substring(filePath.IndexOf("ClientApp") + @"ClientApp\".Length);
+            if (partial.EndsWith(".ts"))
+                partial = partial.Substring(0, partial.Length - 3);
+            return partial.Replace(@"\", "/");
+        }
+
+        /// <summary>
         /// Determines if the selected location is in (under) the "ClientApp" directory.
         /// </summary>
         /// <param name="replacementsDictionary"></param>

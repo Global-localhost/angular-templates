@@ -15,30 +15,34 @@ namespace Angular.Wizards
         public CommonOptionsDialog()
         {
             InitializeComponent();
+            lstApiServices.DisplayMember = "Name";
+            lstDialogs.DisplayMember = "Name";
+            lstModels.DisplayMember = "Name";
+            lstServices.DisplayMember = "Name";
             this.Shown += CommonOptionsDialog_Shown;
         }
 
-        public ICollection<string> ApiServices { get; set; } = new List<string>();
-        public ICollection<string> SelectedApiServices { get; set; } = new List<string>();
+        internal ICollection<Utilities.ClassModel> ApiServices { get; set; } = new List<Utilities.ClassModel>();
+        internal ICollection<Utilities.ClassModel> SelectedApiServices { get; set; } = new List<Utilities.ClassModel>();
         public bool ShowApiServices { get; set; } = true;
 
-        public ICollection<string> Services { get; set; } = new List<string>();
-        public ICollection<string> SelectedServices { get; set; } = new List<string>();
+        internal ICollection<Utilities.ClassModel> Services { get; set; } = new List<Utilities.ClassModel>();
+        internal ICollection<Utilities.ClassModel> SelectedServices { get; set; } = new List<Utilities.ClassModel>();
         public bool ShowServices { get; set; } = true;
 
-        public ICollection<string> Models { get; set; } = new List<string>();
-        public ICollection<string> SelectedModels { get; set; } = new List<string>();
+        internal ICollection<Utilities.ClassModel> Models { get; set; } = new List<Utilities.ClassModel>();
+        internal ICollection<Utilities.ClassModel> SelectedModels { get; set; } = new List<Utilities.ClassModel>();
         public bool ShowModels { get; set; } = true;
 
-        public ICollection<string> Dialogs { get; set; } = new List<string>();
-        public ICollection<string> SelectedDialogs { get; set; } = new List<string>();
+        internal ICollection<Utilities.ClassModel> Dialogs { get; set; } = new List<Utilities.ClassModel>();
+        internal ICollection<Utilities.ClassModel> SelectedDialogs { get; set; } = new List<Utilities.ClassModel>();
         public bool ShowDialogs { get; set; } = true;
 
         private void CommonOptionsDialog_Shown(object sender, EventArgs e)
         {
             if (ShowApiServices)
             {
-                foreach (string item in ApiServices)
+                foreach (Utilities.ClassModel item in ApiServices)
                     lstApiServices.Items.Add(item);
             }
             else
@@ -49,7 +53,7 @@ namespace Angular.Wizards
 
             if (ShowServices)
             {
-                foreach (string item in Services)
+                foreach (Utilities.ClassModel item in Services)
                     lstServices.Items.Add(item);
             }
             else
@@ -60,7 +64,7 @@ namespace Angular.Wizards
 
             if (ShowModels)
             {
-                foreach (string item in Models)
+                foreach (Utilities.ClassModel item in Models)
                     lstModels.Items.Add(item);
             }
             else
@@ -71,7 +75,7 @@ namespace Angular.Wizards
 
             if (ShowDialogs)
             {
-                foreach (string item in Dialogs)
+                foreach (Utilities.ClassModel item in Dialogs)
                     lstDialogs.Items.Add(item);
             }
             else
@@ -83,14 +87,14 @@ namespace Angular.Wizards
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            foreach (var item in lstApiServices.SelectedItems)
-                SelectedApiServices.Add(item.ToString());
-            foreach (var item in lstServices.SelectedItems)
-                SelectedServices.Add(item.ToString());
-            foreach (var item in lstModels.SelectedItems)
-                SelectedModels.Add(item.ToString());
-            foreach (var item in lstDialogs.SelectedItems)
-                SelectedDialogs.Add(item.ToString());
+            foreach (var item in lstApiServices.CheckedItems)
+                SelectedApiServices.Add(item as Utilities.ClassModel);
+            foreach (var item in lstServices.CheckedItems)
+                SelectedServices.Add(item as Utilities.ClassModel);
+            foreach (var item in lstModels.CheckedItems)
+                SelectedModels.Add(item as Utilities.ClassModel);
+            foreach (var item in lstDialogs.CheckedItems)
+                SelectedDialogs.Add(item as Utilities.ClassModel);
         }
     }
 }

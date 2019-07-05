@@ -50,19 +50,19 @@ namespace Angular.Wizards
         /// <param name="optionsDialog"></param>
         protected void CreateOptionalImports(CommonOptionsDialog optionsDialog)
         {
-            foreach (string item in optionsDialog.SelectedApiServices)
+            foreach (Utilities.ClassModel item in optionsDialog.SelectedApiServices)
             {
-                IEnumerable<string> parts = Utilities.Naming.SplitName(item);
-                _apiServiceImports += $"\r\nimport {{ {item}ApiService }} from \"src/app/services/{string.Join("-", parts)}-api.service\";";
+                IEnumerable<string> parts = Utilities.Naming.SplitName(item.Name);
+                _apiServiceImports += $"\r\nimport {{ {item.Name}ApiService }} from \"{item.ImportPath}\";";
 
                 _ctorInjections += $",\r\n{" ".PadLeft(8)}private {Utilities.Naming.ToCamelCase(parts)}ApiService: {Utilities.Naming.ToPascalCase(parts)}ApiService";
             }
 
             bool isDialogAdded = false;
-            foreach (string item in optionsDialog.SelectedDialogs)
+            foreach (Utilities.ClassModel item in optionsDialog.SelectedDialogs)
             {
-                IEnumerable<string> parts = Utilities.Naming.SplitName(item);
-                _dialogImports += $"\r\nimport {{ {item}DialogComponent }} from \"src/app/dialogs/{string.Join("-", parts)}-dialog/{string.Join("-", parts)}-dialog.component\";";
+                IEnumerable<string> parts = Utilities.Naming.SplitName(item.Name);
+                _dialogImports += $"\r\nimport {{ {item.Name}DialogComponent }} from \"{item.ImportPath}\";";
 
                 if (!isDialogAdded)
                 {
@@ -75,18 +75,18 @@ namespace Angular.Wizards
                 }
             }
 
-            foreach (string item in optionsDialog.SelectedModels)
+            foreach (Utilities.ClassModel item in optionsDialog.SelectedModels)
             {
-                IEnumerable<string> parts = Utilities.Naming.SplitName(item);
-                _modelImports += $"\r\nimport {{ {item} }} from \"src/app/models/{Utilities.Naming.ToPascalCase(parts)}\";";
+                IEnumerable<string> parts = Utilities.Naming.SplitName(item.Name);
+                _modelImports += $"\r\nimport {{ {item.Name} }} from \"{item.ImportPath}\";";
 
                 // models are not injected into the constructor
             }
 
-            foreach (string item in optionsDialog.SelectedServices)
+            foreach (Utilities.ClassModel item in optionsDialog.SelectedServices)
             {
-                IEnumerable<string> parts = Utilities.Naming.SplitName(item);
-                _serviceImports += $"\r\nimport {{ {item}Service }} from \"src/app/services/{string.Join("-", parts)}.service\";";
+                IEnumerable<string> parts = Utilities.Naming.SplitName(item.Name);
+                _serviceImports += $"\r\nimport {{ {item.Name}Service }} from \"{item.ImportPath}\";";
 
                 _ctorInjections += $",\r\n{" ".PadLeft(8)}private {Utilities.Naming.ToCamelCase(parts)}Service: {Utilities.Naming.ToPascalCase(parts)}Service";
             }
@@ -106,13 +106,13 @@ namespace Angular.Wizards
                 return true;
 
             if (optionsDialog.ShowApiServices)
-                optionsDialog.ApiServices = Utilities.File.GetApiServiceFileNames(replacementsDictionary);
+                optionsDialog.ApiServices = Utilities.File.GetApiServices(replacementsDictionary);
             if (optionsDialog.ShowDialogs)
-                optionsDialog.Dialogs = Utilities.File.GetDialogFileNames(replacementsDictionary);
+                optionsDialog.Dialogs = Utilities.File.GetDialogs(replacementsDictionary);
             if (optionsDialog.ShowModels)
-                optionsDialog.Models = Utilities.File.GetModelFileNames(replacementsDictionary);
+                optionsDialog.Models = Utilities.File.GetModels(replacementsDictionary);
             if (optionsDialog.ShowServices)
-                optionsDialog.Services = Utilities.File.GetServiceFileNames(replacementsDictionary);
+                optionsDialog.Services = Utilities.File.GetServices(replacementsDictionary);
 
             // if there is nothing to choose, skip the dialog
             if ((!optionsDialog.ShowApiServices || optionsDialog.ApiServices.Count == 0)

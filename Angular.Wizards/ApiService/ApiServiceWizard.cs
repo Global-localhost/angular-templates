@@ -33,8 +33,12 @@ namespace Angular.Wizards.ApiService
             _createFiles = true;
 
             // if the model wasn't selected to be included, automatically add it to the imports. It may be incorrect but the sample code requires it.
-            if (!optionsDialog.SelectedModels.Contains(modelName))
-                optionsDialog.SelectedModels.Add(modelName);
+            if (!optionsDialog.SelectedModels.Any(e => e.Name == modelName))
+                optionsDialog.SelectedModels.Add(new Utilities.ClassModel()
+                {
+                    Name = modelName,
+                    ImportPath = Utilities.Path.ImportPath(replacementsDictionary, $"{Utilities.Path.ModelsPath(replacementsDictionary)}\\{modelName}.ts")
+                }); ;
 
             CreateOptionalImports(optionsDialog);
 
