@@ -27,7 +27,7 @@ namespace Angular.Wizards.Utilities
                     classes.Add(new ClassModel
                     {
                         FullFilePath = fileName,
-                        ImportPath = Path.ImportPath(replacementsDictionary, fileName),
+                        ImportPath = Path.ImportPath(fileName),
                         Name = Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf("-api.service.ts"))))
                     });
                 }
@@ -54,7 +54,7 @@ namespace Angular.Wizards.Utilities
                     classes.Add(new ClassModel
                     {
                         FullFilePath = fileName,
-                        ImportPath = Path.ImportPath(replacementsDictionary, fileName),
+                        ImportPath = Path.ImportPath(fileName),
                         Name = Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf("-dialog.component.ts"))))
                     });
                 }
@@ -81,7 +81,7 @@ namespace Angular.Wizards.Utilities
                     classes.Add(new ClassModel
                     {
                         FullFilePath = fileName,
-                        ImportPath = Path.ImportPath(replacementsDictionary, fileName),
+                        ImportPath = Path.ImportPath(fileName),
                         Name = Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf(".ts"))))
                     });
                 }
@@ -112,7 +112,7 @@ namespace Angular.Wizards.Utilities
                     classes.Add(new ClassModel
                     {
                         FullFilePath = fileName,
-                        ImportPath = Path.ImportPath(replacementsDictionary, fileName),
+                        ImportPath = Path.ImportPath(fileName),
                         Name = Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf(".service.ts"))))
                     });
                 }

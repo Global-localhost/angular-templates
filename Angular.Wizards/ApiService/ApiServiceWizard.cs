@@ -37,7 +37,7 @@ namespace Angular.Wizards.ApiService
                 optionsDialog.SelectedModels.Add(new Utilities.ClassModel()
                 {
                     Name = modelName,
-                    ImportPath = Utilities.Path.ImportPath(replacementsDictionary, $"{Utilities.Path.ModelsPath(replacementsDictionary)}\\{modelName}.ts")
+                    ImportPath = Utilities.Path.ImportPath($"{Utilities.Path.ModelsPath(replacementsDictionary)}\\{modelName}.ts")
                 }); ;
 
             CreateOptionalImports(optionsDialog);

@@ -101,8 +101,8 @@ namespace Angular.Wizards
         /// <returns></returns>
         protected bool ShowOptionDialog(CommonOptionsDialog optionsDialog, Dictionary<string, string> replacementsDictionary)
         {
-            // if they are creating this item outside the ClientApp, allow but don't offer any options
-            if (!Utilities.Path.IsInClientApp(replacementsDictionary))
+            // if they are creating this item outside the angular app root, allow but don't offer any options
+            if (!Utilities.Path.IsInAngularApp(replacementsDictionary))
                 return true;
 
             if (optionsDialog.ShowApiServices)
