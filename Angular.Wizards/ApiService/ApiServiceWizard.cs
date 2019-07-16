@@ -57,6 +57,12 @@ namespace Angular.Wizards.ApiService
             // the name of the file
             replacementsDictionary.Add("$fileName$", $"{string.Join("-", itemParts)}-api.service.ts");
 
+            // the name of the file to use when importing
+            replacementsDictionary.Add("$importFileName$", $"{string.Join("-", itemParts)}-api.service");
+
+            // the name of the unit test file
+            replacementsDictionary.Add("$specFileName$", $"{string.Join("-", itemParts)}-api.service.spec.ts");
+
             // optional files
             replacementsDictionary.Add("$apiImports$", _apiServiceImports);
             replacementsDictionary.Add("$modelImports$", _modelImports);

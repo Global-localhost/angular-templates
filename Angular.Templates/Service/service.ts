@@ -7,7 +7,9 @@ import { Injectable } from "@angular/core"; $packageImports$
 
 // Models$modelImports$
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class $className$ {
 
     constructor($constructorInjects$) {

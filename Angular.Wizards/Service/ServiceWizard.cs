@@ -39,6 +39,12 @@ namespace Angular.Wizards.Service
             // the name of the file
             replacementsDictionary.Add("$fileName$", $"{string.Join("-", itemParts)}.service.ts");
 
+            // the name of the file to use when importing
+            replacementsDictionary.Add("$importFileName$", $"{string.Join("-", itemParts)}.service");
+
+            // the name of the unit test file
+            replacementsDictionary.Add("$specFileName$", $"{string.Join("-", itemParts)}.service.spec.ts");
+
             // optional files
             replacementsDictionary.Add("$apiImports$", _apiServiceImports);
             replacementsDictionary.Add("$dialogImports$", _dialogImports);

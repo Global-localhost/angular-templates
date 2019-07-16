@@ -14,6 +14,7 @@
   <TemplateContent>
     <References />
     <ProjectItem ReplaceParameters="true" TargetFileName="$fileName$">service.ts</ProjectItem>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$specFileName$">service.spec.ts</ProjectItem>
   </TemplateContent>
   <WizardExtension>
     <Assembly>Angular.Wizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=647581456131c645</Assembly>

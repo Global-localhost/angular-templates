@@ -9,7 +9,9 @@ import { Observable } from "rxjs"; $packageImports$
 
 // Models$modelImports$
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class $className$ {
     private readonly baseApiRoute: string = "api/$modelNameAsParameter$";
 
