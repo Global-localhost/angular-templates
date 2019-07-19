@@ -9,7 +9,7 @@
     <TemplateGroupID>AspNetCore</TemplateGroupID>
     <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
-    <DefaultName>component1-dialog.component.ts</DefaultName>
+    <DefaultName>dialog1.dialog-component.ts</DefaultName>
   </TemplateData>
   <TemplateContent>
     <References />

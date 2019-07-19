@@ -9,7 +9,7 @@
     <TemplateGroupID>AspNetCore</TemplateGroupID>
     <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
-    <DefaultName>component1-page.component.ts</DefaultName>
+    <DefaultName>page1.page-component.ts</DefaultName>
   </TemplateData>
   <TemplateContent>
     <References />

@@ -20,7 +20,7 @@ namespace Angular.Wizards.Utilities
 
             if (Directory.Exists(Path.ApiServicesPath(replacementsDictionary)))
             {
-                string[] files = Directory.GetFiles(Path.ApiServicesPath(replacementsDictionary), "*-api.service.ts", SearchOption.AllDirectories);
+                string[] files = Directory.GetFiles(Path.ApiServicesPath(replacementsDictionary), "*.api-service.ts", SearchOption.AllDirectories);
                 foreach (string fileName in files)
                 {
                     FileInfo file = new FileInfo(fileName);
@@ -28,7 +28,7 @@ namespace Angular.Wizards.Utilities
                     {
                         FullFilePath = fileName,
                         ImportPath = Path.ImportPath(fileName),
-                        Name = Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf("-api.service.ts"))))
+                        Name = Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf(".api-service.ts"))))
                     });
                 }
             }
@@ -47,7 +47,7 @@ namespace Angular.Wizards.Utilities
 
             if (Directory.Exists(Path.DialogsPath(replacementsDictionary)))
             {
-                string[] files = Directory.GetFiles(Path.DialogsPath(replacementsDictionary), "*-dialog.component.ts", SearchOption.AllDirectories);
+                string[] files = Directory.GetFiles(Path.DialogsPath(replacementsDictionary), "*.dialog-component.ts", SearchOption.AllDirectories);
                 foreach (string fileName in files)
                 {
                     FileInfo file = new FileInfo(fileName);
@@ -55,7 +55,7 @@ namespace Angular.Wizards.Utilities
                     {
                         FullFilePath = fileName,
                         ImportPath = Path.ImportPath(fileName),
-                        Name = Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf("-dialog.component.ts"))))
+                        Name = Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf(".dialog-component.ts"))))
                     });
                 }
             }
@@ -105,8 +105,8 @@ namespace Angular.Wizards.Utilities
                 foreach (string fileName in files)
                 {
                     // in case api services are in the same directory as the 'normal' services check and ignore api service files
-                    if (fileName.EndsWith("-api.service.ts", StringComparison.InvariantCultureIgnoreCase))
-                        continue;
+                    //if (fileName.EndsWith(".api.service.ts", StringComparison.InvariantCultureIgnoreCase))
+                    //    continue;
 
                     FileInfo file = new FileInfo(fileName);
                     classes.Add(new ClassModel

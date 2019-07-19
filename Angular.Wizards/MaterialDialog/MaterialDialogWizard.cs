@@ -18,8 +18,9 @@ namespace Angular.Wizards.MaterialDialog
             {
                 itemName = "component1";
             }
-            itemName += "Dialog";
+            string fullItemName = itemName + "Dialog";
             IEnumerable<string> itemParts = Utilities.Naming.SplitName(itemName);
+            IEnumerable<string> fullItemParts = Utilities.Naming.SplitName(fullItemName);
 
             CommonOptionsDialog optionsDialog = new CommonOptionsDialog
             {
@@ -37,18 +38,18 @@ namespace Angular.Wizards.MaterialDialog
             // if they have selected more than one model, could show second custom dialog to select which is input and which is output(?)
 
             // folder name
-            replacementsDictionary.Add("$folderName$", $"{string.Join("-", itemParts)}");
+            replacementsDictionary.Add("$folderName$", $"{string.Join("-", fullItemParts)}");
 
             // component selector
-            replacementsDictionary.Add("$selector$", $"app-{string.Join("-", itemParts)}");
+            replacementsDictionary.Add("$selector$", $"app-{string.Join("-", fullItemParts)}");
 
             // the name of the class
-            replacementsDictionary.Add("$className$", $"{Utilities.Naming.ToPascalCase(itemParts)}Component");
+            replacementsDictionary.Add("$className$", $"{Utilities.Naming.ToPascalCase(fullItemParts)}Component");
 
             // the name of the files
-            replacementsDictionary.Add("$tsFileName$", $"{string.Join("-", itemParts)}.component.ts");
-            replacementsDictionary.Add("$htmlFileName$", $"{string.Join("-", itemParts)}.component.html");
-            replacementsDictionary.Add("$cssFileName$", $"{string.Join("-", itemParts)}.component.scss");
+            replacementsDictionary.Add("$tsFileName$", $"{string.Join("-", itemParts)}.dialog-component.ts");
+            replacementsDictionary.Add("$htmlFileName$", $"{string.Join("-", itemParts)}.dialog-component.html");
+            replacementsDictionary.Add("$cssFileName$", $"{string.Join("-", itemParts)}.dialog-component.scss");
 
             // the input data type
             replacementsDictionary.Add("$dataInputModelType$", optionsDialog.SelectedModels.Count == 1 ? optionsDialog.SelectedModels.First().Name : "any"); //TODO how to pull this in common dialog

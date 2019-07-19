@@ -15,7 +15,8 @@ namespace Angular.Wizards.Utilities
         /// <returns></returns>
         public static string ApiServicesPath(Dictionary<string, string> replacementsDictionary)
         {
-            return System.IO.Path.Combine(AppRootPath(replacementsDictionary), "services");
+            //return System.IO.Path.Combine(AppRootPath(replacementsDictionary), "services");
+            return AppRootPath(replacementsDictionary);
         }
 
         /// <summary>
@@ -38,7 +39,8 @@ namespace Angular.Wizards.Utilities
         /// <returns></returns>
         public static string DialogsPath(Dictionary<string, string> replacementsDictionary)
         {
-            return System.IO.Path.Combine(AppRootPath(replacementsDictionary), "dialogs");
+            //return System.IO.Path.Combine(AppRootPath(replacementsDictionary), "dialogs");
+            return AppRootPath(replacementsDictionary);
         }
 
         /// <summary>
@@ -99,7 +101,8 @@ namespace Angular.Wizards.Utilities
         /// <returns></returns>
         public static string ServicesPath(Dictionary<string, string> replacementsDictionary)
         {
-            return System.IO.Path.Combine(AppRootPath(replacementsDictionary), "services");
+            //return System.IO.Path.Combine(AppRootPath(replacementsDictionary), "services");
+            return AppRootPath(replacementsDictionary);
         }
     }
 }

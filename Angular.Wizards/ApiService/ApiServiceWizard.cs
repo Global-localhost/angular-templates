@@ -32,6 +32,7 @@ namespace Angular.Wizards.ApiService
 
             _createFiles = true;
 
+            //TODO just create from the selected models, should include both load and save
             // if the model wasn't selected to be included, automatically add it to the imports. It may be incorrect but the sample code requires it.
             if (!optionsDialog.SelectedModels.Any(e => e.Name == modelName))
                 optionsDialog.SelectedModels.Add(new Utilities.ClassModel()
@@ -55,13 +56,13 @@ namespace Angular.Wizards.ApiService
             replacementsDictionary.Add("$className$", $"{modelName}ApiService");
 
             // the name of the file
-            replacementsDictionary.Add("$fileName$", $"{string.Join("-", itemParts)}-api.service.ts");
+            replacementsDictionary.Add("$fileName$", $"{string.Join("-", itemParts)}.api-service.ts");
 
             // the name of the file to use when importing
-            replacementsDictionary.Add("$importFileName$", $"{string.Join("-", itemParts)}-api.service");
+            replacementsDictionary.Add("$importFileName$", $"{string.Join("-", itemParts)}.api-service");
 
             // the name of the unit test file
-            replacementsDictionary.Add("$specFileName$", $"{string.Join("-", itemParts)}-api.service.spec.ts");
+            replacementsDictionary.Add("$specFileName$", $"{string.Join("-", itemParts)}.api-service.spec.ts");
 
             // optional files
             replacementsDictionary.Add("$apiImports$", _apiServiceImports);

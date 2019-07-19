@@ -9,7 +9,7 @@
     <TemplateGroupID>AspNetCore</TemplateGroupID>
     <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
     <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
-    <DefaultName>service1-api.service.ts</DefaultName>
+    <DefaultName>service1.api-service.ts</DefaultName>
   </TemplateData>
   <TemplateContent>
     <References />
