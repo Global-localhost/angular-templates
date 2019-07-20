@@ -75,12 +75,35 @@ namespace Angular.Wizards
                 }
             }
 
-            foreach (Utilities.ClassModel item in optionsDialog.SelectedModels)
+            if (optionsDialog.SelectedModels.Count > 0)
             {
-                IEnumerable<string> parts = Utilities.Naming.SplitName(item.Name);
-                _modelImports += $"\r\nimport {{ {item.Name} }} from \"{item.ImportPath}\";";
+                // the final list used to generate the actual code
+                ICollection<Utilities.ClassModel> models = new List<Utilities.ClassModel>();
 
-                // models are not injected into the constructor
+                // are there multiple models from the same file?
+                if (optionsDialog.SelectedModels.Select(c => c.ImportPath).Distinct().Count() != optionsDialog.SelectedModels.Count)
+                {
+                    // if the path already exists, just add the new class to the name so it gets generated together
+                    foreach (Utilities.ClassModel item in optionsDialog.SelectedModels)
+                    {
+                        if (models.Count(c => c.ImportPath == item.ImportPath) > 0)
+                            models.First(c => c.ImportPath == item.ImportPath).Name += $", {item.Name}";
+                        else
+                            models.Add(item);
+                    }
+                }
+                else
+                {
+                    // no overlaps, just copy the collection
+                    models = optionsDialog.SelectedModels;
+                }
+
+                foreach (Utilities.ClassModel item in models)
+                {
+                    _modelImports += $"\r\nimport {{ {item.Name} }} from \"{item.ImportPath}\";";
+
+                    // models are not injected into the constructor
+                }
             }
 
             foreach (Utilities.ClassModel item in optionsDialog.SelectedServices)
