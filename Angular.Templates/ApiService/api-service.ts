@@ -29,6 +29,6 @@ export class $className$ {
      * @param $modelNameAsParameter$Id
      */
     public get$modelName$($modelNameAsParameter$Id: number): Observable<$modelName$> {
-        return this.http.get<$modelName$>("${this.baseApiRoute}/${$modelNameAsParameter$Id}");
+        return this.http.get<$modelName$>(`${this.baseApiRoute}/${$modelNameAsParameter$Id}`);
     }
 }
