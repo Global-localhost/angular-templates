@@ -33,7 +33,7 @@ namespace Angular.Wizards.Utilities
                 }
             }
 
-            return classes;
+            return classes.OrderBy(c => c.Name).ToList();
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Angular.Wizards.Utilities
                 }
             }
 
-            return classes;
+            return classes.OrderBy(c => c.Name).ToList();
         }
 
         /// <summary>
@@ -71,6 +71,7 @@ namespace Angular.Wizards.Utilities
         public static ICollection<ClassModel> GetModels(Dictionary<string, string> replacementsDictionary)
         {
             ICollection<ClassModel> classes = new List<ClassModel>();
+            const string searchString = "export class ";
 
             if (Directory.Exists(Path.ModelsPath(replacementsDictionary)))
             {
@@ -78,16 +79,44 @@ namespace Angular.Wizards.Utilities
                 foreach (string fileName in files)
                 {
                     FileInfo file = new FileInfo(fileName);
-                    classes.Add(new ClassModel
+
+                    // read each file and find all exported classes
+                    using (StreamReader streamReader = new StreamReader(fileName))
                     {
-                        FullFilePath = fileName,
-                        ImportPath = Path.ImportPath(fileName),
-                        Name = Naming.ToPascalCase(Naming.SplitName(file.Name.Remove(file.Name.IndexOf(".ts"))))
-                    });
+                        while (!streamReader.EndOfStream)
+                        {
+                            string line = streamReader.ReadLine();
+                            if (line.StartsWith(searchString))
+                            {
+                                line = line.Substring(searchString.Length).Trim();
+
+                                // look for any space or opening bracket
+                                int idx = line.IndexOfAny(new char[] { ' ', '{' });
+                                if (idx > 0)
+                                {
+                                    classes.Add(new ClassModel
+                                    {
+                                        FullFilePath = fileName,
+                                        ImportPath = Path.ImportPath(fileName),
+                                        Name = Naming.ToPascalCase(Naming.SplitName(line.Substring(0, idx)))
+                                    });
+                                }
+                                else
+                                {
+                                    classes.Add(new ClassModel
+                                    {
+                                        FullFilePath = fileName,
+                                        ImportPath = Path.ImportPath(fileName),
+                                        Name = Naming.ToPascalCase(Naming.SplitName(line))
+                                    });
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
-            return classes;
+            return classes.OrderBy(c => c.Name).ToList();
         }
 
         /// <summary>
@@ -118,7 +147,7 @@ namespace Angular.Wizards.Utilities
                 }
             }
 
-            return classes;
+            return classes.OrderBy(c => c.Name).ToList();
         }
     }
 }
