@@ -19,6 +19,6 @@
   </TemplateContent>
   <WizardExtension>
     <Assembly>Angular.Wizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=647581456131c645</Assembly>
-    <FullClassName>Angular.Wizards.Angular.Component.AngularComponentWizard</FullClassName>
+    <FullClassName>Angular.Wizards.Component.ComponentWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>

@@ -22,20 +22,27 @@ namespace Angular.Wizards.MaterialDialog
             IEnumerable<string> itemParts = Utilities.Naming.SplitName(itemName);
             IEnumerable<string> fullItemParts = Utilities.Naming.SplitName(fullItemName);
 
-            CommonOptionsDialog optionsDialog = new CommonOptionsDialog
+            using (CommonOptionsDialog optionsDialog = new CommonOptionsDialog
             {
                 Text = "Angular Material Dialog Component Options",
                 ShowDialogs = false
-            };
+            })
+            {
+                if (!ShowOptionDialog(optionsDialog, replacementsDictionary))
+                    return;
 
-            if (!ShowOptionDialog(optionsDialog, replacementsDictionary))
-                return;
+                _createFiles = true;
 
-            _createFiles = true;
+                CreateOptionalImports(optionsDialog);
 
-            CreateOptionalImports(optionsDialog);
+                // if they have selected more than one model, could show second custom dialog to select which is input and which is output(?)
 
-            // if they have selected more than one model, could show second custom dialog to select which is input and which is output(?)
+                // the input data type
+                replacementsDictionary.Add("$dataInputModelType$", optionsDialog.SelectedModels.Count == 1 ? optionsDialog.SelectedModels.First().Name : "any"); //TODO how to pull this in common dialog
+
+                // the output data type, if any
+                replacementsDictionary.Add("$dataOutputModelType$", (optionsDialog.SelectedModels.Count == 1 ? optionsDialog.SelectedModels.First().Name : "any")); //TODO how to pull this in common dialog
+            }
 
             // folder name
             replacementsDictionary.Add("$folderName$", $"{string.Join("-", fullItemParts)}");
@@ -51,17 +58,7 @@ namespace Angular.Wizards.MaterialDialog
             replacementsDictionary.Add("$htmlFileName$", $"{string.Join("-", itemParts)}.dialog-component.html");
             replacementsDictionary.Add("$cssFileName$", $"{string.Join("-", itemParts)}.dialog-component.scss");
 
-            // the input data type
-            replacementsDictionary.Add("$dataInputModelType$", optionsDialog.SelectedModels.Count == 1 ? optionsDialog.SelectedModels.First().Name : "any"); //TODO how to pull this in common dialog
-
-            // the output data type, if any
-            replacementsDictionary.Add("$dataOutputModelType$", (optionsDialog.SelectedModels.Count == 1 ? optionsDialog.SelectedModels.First().Name : "any")); //TODO how to pull this in common dialog
-
-            // optional files
-            replacementsDictionary.Add("$apiImports$", _apiServiceImports);
-            replacementsDictionary.Add("$modelImports$", _modelImports);
-            replacementsDictionary.Add("$packageImports$", _packageImports);
-            replacementsDictionary.Add("$serviceImports$", _serviceImports);
+            AddCommonReplacements(replacementsDictionary);
 
             // additional constructor items - since we have no default items, remove the initial comma
             replacementsDictionary.Add("$constructorInjects$", _ctorInjections);

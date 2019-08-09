@@ -1,5 +1,5 @@
 ﻿// npm Packages
-import { Injectable } from "@angular/core"; $packageImports$
+import { Injectable } from $stringDelimiter$@angular/core$stringDelimiter$; $packageImports$
 
 // API Services$apiImports$
 
@@ -8,7 +8,7 @@ import { Injectable } from "@angular/core"; $packageImports$
 // Models$modelImports$
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: $stringDelimiter$root$stringDelimiter$
 })
 export class $className$ {
 

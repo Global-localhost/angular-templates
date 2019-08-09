@@ -1,7 +1,7 @@
 ﻿// npm Packages
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs"; $packageImports$
+import { Injectable } from $stringDelimiter$@angular/core$stringDelimiter$;
+import { HttpClient } from $stringDelimiter$@angular/common/http$stringDelimiter$;
+import { Observable } from $stringDelimiter$rxjs$stringDelimiter$; $packageImports$
 
 // API Services$apiImports$
 
@@ -10,10 +10,10 @@ import { Observable } from "rxjs"; $packageImports$
 // Models$modelImports$
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: $stringDelimiter$root$stringDelimiter$
 })
 export class $className$ {
-    private readonly baseApiRoute: string = "api/$modelNameAsParameter$";
+    private readonly baseApiRoute: string = $stringDelimiter$api/$modelNameAsParameter$$stringDelimiter$;
 
     constructor(private http: HttpClient$constructorInjects$) { }
 

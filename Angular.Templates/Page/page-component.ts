@@ -1,5 +1,5 @@
 ﻿// npm Packages
-import { Component, OnInit } from "@angular/core";$packageImports$
+import { Component, OnInit } from $stringDelimiter$@angular/core$stringDelimiter$;$packageImports$
 
 // API Services$apiImports$
 
@@ -10,9 +10,9 @@ import { Component, OnInit } from "@angular/core";$packageImports$
 // Dialogs$dialogImports$
 
 @Component({
-    selector: "$selector$",
-    templateUrl: "./$htmlFileName$",
-    styleUrls: ["./$cssFileName$"]
+    selector: $stringDelimiter$$selector$$stringDelimiter$,
+    templateUrl: $stringDelimiter$./$htmlFileName$$stringDelimiter$,
+    styleUrls: [$stringDelimiter$./$cssFileName$$stringDelimiter$]
 })
 export class $className$ implements OnInit {
 

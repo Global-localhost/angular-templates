@@ -64,11 +64,7 @@ namespace Angular.Wizards.ApiService
             // the name of the unit test file
             replacementsDictionary.Add("$specFileName$", $"{string.Join("-", itemParts)}.api-service.spec.ts");
 
-            // optional files
-            replacementsDictionary.Add("$apiImports$", _apiServiceImports);
-            replacementsDictionary.Add("$modelImports$", _modelImports);
-            replacementsDictionary.Add("$packageImports$", _packageImports);
-            replacementsDictionary.Add("$serviceImports$", _serviceImports);
+            AddCommonReplacements(replacementsDictionary);
 
             // additional constructor items
             replacementsDictionary.Add("$constructorInjects$", _ctorInjections);

@@ -1,6 +1,6 @@
 ﻿// npm Packages
-import { Component, OnInit, Inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";$packageImports$
+import { Component, OnInit, Inject } from $stringDelimiter$@angular/core$stringDelimiter$;
+import { MAT_DIALOG_DATA, MatDialogRef } from $stringDelimiter$@angular/material$stringDelimiter$;$packageImports$
 
 // API Services$apiImports$
 
@@ -9,9 +9,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";$packageImport
 // Models$modelImports$
 
 @Component({
-    selector: "$selector$",
-    templateUrl: "./$htmlFileName$",
-    styleUrls: ["./$cssFileName$"]
+    selector: $stringDelimiter$$selector$$stringDelimiter$,
+    templateUrl: $stringDelimiter$./$htmlFileName$$stringDelimiter$,
+    styleUrls: [$stringDelimiter$./$cssFileName$$stringDelimiter$]
 })
 export class $className$ implements OnInit {
     private outputData: $dataOutputModelType$;

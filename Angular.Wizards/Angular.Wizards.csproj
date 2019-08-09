@@ -83,6 +83,7 @@
     <Compile Include="Utilities\ClassModel.cs" />
     <Compile Include="Utilities\Naming.cs" />
     <Compile Include="Utilities\Path.cs" />
+    <Compile Include="Utilities\Settings.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

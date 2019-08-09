@@ -17,6 +17,7 @@ namespace Angular.Wizards
         protected string _packageImports = "";
         protected string _serviceImports = "";
         protected string _ctorInjections = "";
+        protected Utilities.Settings Settings = new Utilities.Settings();
 
         public virtual void BeforeOpeningFile(ProjectItem projectItem)
         {
@@ -41,7 +42,27 @@ namespace Angular.Wizards
 
         public virtual bool ShouldAddProjectItem(string filePath)
         {
-            return _createFiles;
+            if (!_createFiles)
+                return false;
+
+            if (filePath.EndsWith(".spec.ts") && !Settings.IncludeUnitTests)
+                return false;
+
+            return true;
+        }
+
+        protected void AddCommonReplacements(Dictionary<string, string> replacementsDictionary)
+        {
+            // settings
+            replacementsDictionary.Add("$selectorPrefix$", $"{Settings.ComponentSelectorPrefix}");
+            replacementsDictionary.Add("$stringDelimiter$", $"{Settings.StringDelimiter}");
+
+            // optional files
+            replacementsDictionary.Add("$apiImports$", _apiServiceImports);
+            replacementsDictionary.Add("$dialogImports$", _dialogImports);
+            replacementsDictionary.Add("$modelImports$", _modelImports);
+            replacementsDictionary.Add("$packageImports$", _packageImports);
+            replacementsDictionary.Add("$serviceImports$", _serviceImports);
         }
 
         /// <summary>
@@ -53,7 +74,7 @@ namespace Angular.Wizards
             foreach (Utilities.ClassModel item in optionsDialog.SelectedApiServices)
             {
                 IEnumerable<string> parts = Utilities.Naming.SplitName(item.Name);
-                _apiServiceImports += $"\r\nimport {{ {item.Name}ApiService }} from \"{item.ImportPath}\";";
+                _apiServiceImports += $"\r\nimport {{ {item.Name}ApiService }} from {Settings.StringDelimiter}{item.ImportPath}{Settings.StringDelimiter};";
 
                 _ctorInjections += $",\r\n{" ".PadLeft(8)}private {Utilities.Naming.ToCamelCase(parts)}ApiService: {Utilities.Naming.ToPascalCase(parts)}ApiService";
             }
@@ -62,11 +83,11 @@ namespace Angular.Wizards
             foreach (Utilities.ClassModel item in optionsDialog.SelectedDialogs)
             {
                 IEnumerable<string> parts = Utilities.Naming.SplitName(item.Name);
-                _dialogImports += $"\r\nimport {{ {item.Name}DialogComponent }} from \"{item.ImportPath}\";";
+                _dialogImports += $"\r\nimport {{ {item.Name}DialogComponent }} from {Settings.StringDelimiter}{item.ImportPath}{Settings.StringDelimiter};";
 
                 if (!isDialogAdded)
                 {
-                    _packageImports += $"\r\nimport {{ MatDialogConfig, MatDialog }} from \"@angular/material\";";
+                    _packageImports += $"\r\nimport {{ MatDialogConfig, MatDialog }} from {Settings.StringDelimiter}@angular/material{Settings.StringDelimiter};";
 
                     // add to the beginning
                     _ctorInjections = $",\r\n{" ".PadLeft(8)}private dialog: MatDialog" + _ctorInjections;
@@ -100,7 +121,7 @@ namespace Angular.Wizards
 
                 foreach (Utilities.ClassModel item in models)
                 {
-                    _modelImports += $"\r\nimport {{ {item.Name} }} from \"{item.ImportPath}\";";
+                    _modelImports += $"\r\nimport {{ {item.Name} }} from {Settings.StringDelimiter}{item.ImportPath}{Settings.StringDelimiter};";
 
                     // models are not injected into the constructor
                 }
@@ -109,7 +130,7 @@ namespace Angular.Wizards
             foreach (Utilities.ClassModel item in optionsDialog.SelectedServices)
             {
                 IEnumerable<string> parts = Utilities.Naming.SplitName(item.Name);
-                _serviceImports += $"\r\nimport {{ {item.Name}Service }} from \"{item.ImportPath}\";";
+                _serviceImports += $"\r\nimport {{ {item.Name}Service }} from {Settings.StringDelimiter}{item.ImportPath}{Settings.StringDelimiter};";
 
                 _ctorInjections += $",\r\n{" ".PadLeft(8)}private {Utilities.Naming.ToCamelCase(parts)}Service: {Utilities.Naming.ToPascalCase(parts)}Service";
             }

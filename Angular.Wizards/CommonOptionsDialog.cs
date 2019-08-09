@@ -96,5 +96,15 @@ namespace Angular.Wizards
             foreach (var item in lstDialogs.CheckedItems)
                 SelectedDialogs.Add(item as Utilities.ClassModel);
         }
+
+        private void BtnSettings_Click(object sender, EventArgs e)
+        {
+            SettingsDialog settingsDialog = new SettingsDialog();
+            DialogResult dialogResult = settingsDialog.ShowDialog(this);
+            if(dialogResult == DialogResult.OK)
+            {
+                // reload the possible items, perhaps close this dialog with a retry result?
+            }
+        }
     }
 }

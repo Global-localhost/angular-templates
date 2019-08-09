@@ -37,7 +37,7 @@ namespace Angular.Wizards.Component
             replacementsDictionary.Add("$folderName$", $"{string.Join("-", itemParts)}");
 
             // component selector
-            replacementsDictionary.Add("$selector$", $"app-{string.Join("-", itemParts)}");
+            replacementsDictionary.Add("$selector$", $"{Settings.ComponentSelectorPrefix }-{string.Join("-", itemParts)}");
 
             // the name of the class
             replacementsDictionary.Add("$className$", $"{Utilities.Naming.ToPascalCase(itemParts)}Component");
@@ -45,14 +45,9 @@ namespace Angular.Wizards.Component
             // the name of the files
             replacementsDictionary.Add("$tsFileName$", $"{string.Join("-", itemParts)}.component.ts");
             replacementsDictionary.Add("$htmlFileName$", $"{string.Join("-", itemParts)}.component.html");
-            replacementsDictionary.Add("$cssFileName$", $"{string.Join("-", itemParts)}.component.scss");
+            replacementsDictionary.Add("$cssFileName$", $"{string.Join("-", itemParts)}.component.{Settings.StylesheetFormat.ToString().ToLower()}");
 
-            // optional files
-            replacementsDictionary.Add("$apiImports$", _apiServiceImports);
-            replacementsDictionary.Add("$dialogImports$", _dialogImports);
-            replacementsDictionary.Add("$modelImports$", _modelImports);
-            replacementsDictionary.Add("$packageImports$", _packageImports);
-            replacementsDictionary.Add("$serviceImports$", _serviceImports);
+            AddCommonReplacements(replacementsDictionary);
 
             // additional constructor items - since we have no default items, remove the initial comma
             replacementsDictionary.Add("$constructorInjects$", (string.IsNullOrWhiteSpace(_ctorInjections) ? _ctorInjections : _ctorInjections.Substring(1)));

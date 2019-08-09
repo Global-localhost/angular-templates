@@ -21,17 +21,19 @@ namespace Angular.Wizards.Service
             }
             IEnumerable<string> itemParts = Utilities.Naming.SplitName(itemName);
 
-            CommonOptionsDialog optionsDialog = new CommonOptionsDialog
+            using (CommonOptionsDialog optionsDialog = new CommonOptionsDialog
             {
                 Text = "Angular Service Class Options",
                 ShowDialogs = false
-            };
-            if (!ShowOptionDialog(optionsDialog, replacementsDictionary))
-                return;
+            })
+            {
+                if (!ShowOptionDialog(optionsDialog, replacementsDictionary))
+                    return;
 
-            _createFiles = true;
+                _createFiles = true;
 
-            CreateOptionalImports(optionsDialog);
+                CreateOptionalImports(optionsDialog);
+            }
 
             // the name of the class
             replacementsDictionary.Add("$className$", $"{Utilities.Naming.ToPascalCase(itemParts)}Service");
@@ -45,12 +47,7 @@ namespace Angular.Wizards.Service
             // the name of the unit test file
             replacementsDictionary.Add("$specFileName$", $"{string.Join("-", itemParts)}.service.spec.ts");
 
-            // optional files
-            replacementsDictionary.Add("$apiImports$", _apiServiceImports);
-            replacementsDictionary.Add("$dialogImports$", _dialogImports);
-            replacementsDictionary.Add("$modelImports$", _modelImports);
-            replacementsDictionary.Add("$packageImports$", _packageImports);
-            replacementsDictionary.Add("$serviceImports$", _serviceImports);
+            AddCommonReplacements(replacementsDictionary);
 
             // additional constructor items - since we have no default items, remove the initial comma
             replacementsDictionary.Add("$constructorInjects$", (string.IsNullOrWhiteSpace(_ctorInjections) ? _ctorInjections : _ctorInjections.Substring(1)));

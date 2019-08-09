@@ -50,12 +50,7 @@ namespace Angular.Wizards.Page
             replacementsDictionary.Add("$htmlFileName$", $"{string.Join("-", itemParts)}.page-component.html");
             replacementsDictionary.Add("$cssFileName$", $"{string.Join("-", itemParts)}.page-component.scss");
 
-            // optional files
-            replacementsDictionary.Add("$apiImports$", _apiServiceImports);
-            replacementsDictionary.Add("$dialogImports$", _dialogImports);
-            replacementsDictionary.Add("$modelImports$", _modelImports);
-            replacementsDictionary.Add("$packageImports$", _packageImports);
-            replacementsDictionary.Add("$serviceImports$", _serviceImports);
+            AddCommonReplacements(replacementsDictionary);
 
             // additional constructor items - since we have no default items, remove the initial comma
             replacementsDictionary.Add("$constructorInjects$", (string.IsNullOrWhiteSpace(_ctorInjections) ? _ctorInjections : _ctorInjections.Substring(1)));
