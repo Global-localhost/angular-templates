@@ -63,13 +63,7 @@
             this.lstGroup.FormattingEnabled = true;
             this.lstGroup.ItemHeight = 15;
             this.lstGroup.Items.AddRange(new object[] {
-            "General",
-            "API Service",
-            "Component",
-            "Material Dialog",
-            "Model",
-            "Page",
-            "Service"});
+            "General"});
             this.lstGroup.Location = new System.Drawing.Point(13, 13);
             this.lstGroup.Name = "lstGroup";
             this.lstGroup.Size = new System.Drawing.Size(143, 289);

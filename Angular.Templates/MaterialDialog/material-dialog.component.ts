@@ -28,14 +28,14 @@ export class $className$ implements OnInit {
     /**
      * Handles events to cancel (and close) the dialog.
      */
-    onCancel() {
+    onCancel(): void {
         this.dialogRef.close();
     }
 
     /**
      * Handles the OK button click event.
      */
-    onOk() {
+    onOk(): void {
         this.dialogRef.close(this.outputData);
     }
 }
