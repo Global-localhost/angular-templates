@@ -56,7 +56,7 @@ namespace Angular.Wizards.MaterialDialog
             // the name of the files
             replacementsDictionary.Add("$tsFileName$", $"{string.Join("-", itemParts)}.dialog-component.ts");
             replacementsDictionary.Add("$htmlFileName$", $"{string.Join("-", itemParts)}.dialog-component.html");
-            replacementsDictionary.Add("$cssFileName$", $"{string.Join("-", itemParts)}.dialog-component.scss");
+            replacementsDictionary.Add("$cssFileName$", $"{string.Join("-", itemParts)}.dialog-component.{Settings.StylesheetFormat.ToString().ToLower()}");
 
             AddCommonReplacements(replacementsDictionary);
 

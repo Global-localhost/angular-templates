@@ -49,6 +49,8 @@
             this.pnlModel = new System.Windows.Forms.Panel();
             this.pnlPage = new System.Windows.Forms.Panel();
             this.pnlService = new System.Windows.Forms.Panel();
+            this.btnSaveGlobal = new System.Windows.Forms.Button();
+            this.btnRestore = new System.Windows.Forms.Button();
             this.pnlContainer.SuspendLayout();
             this.pnlGeneral.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -86,12 +88,14 @@
             // 
             // btnOk
             // 
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.Location = new System.Drawing.Point(363, 330);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 2;
             this.btnOk.Text = "Save";
             this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.BtnOk_Click);
             // 
             // pnlContainer
             // 
@@ -266,12 +270,35 @@
             this.pnlService.Size = new System.Drawing.Size(179, 52);
             this.pnlService.TabIndex = 2;
             // 
+            // btnSaveGlobal
+            // 
+            this.btnSaveGlobal.Location = new System.Drawing.Point(251, 330);
+            this.btnSaveGlobal.Name = "btnSaveGlobal";
+            this.btnSaveGlobal.Size = new System.Drawing.Size(106, 23);
+            this.btnSaveGlobal.TabIndex = 4;
+            this.btnSaveGlobal.Text = "Save as Default";
+            this.btnSaveGlobal.UseVisualStyleBackColor = true;
+            this.btnSaveGlobal.Visible = false;
+            // 
+            // btnRestore
+            // 
+            this.btnRestore.Location = new System.Drawing.Point(12, 330);
+            this.btnRestore.Name = "btnRestore";
+            this.btnRestore.Size = new System.Drawing.Size(101, 23);
+            this.btnRestore.TabIndex = 5;
+            this.btnRestore.Text = "Restore Defaults";
+            this.btnRestore.UseVisualStyleBackColor = true;
+            this.btnRestore.Visible = false;
+            // 
             // SettingsDialog
             // 
+            this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(531, 365);
+            this.Controls.Add(this.btnRestore);
+            this.Controls.Add(this.btnSaveGlobal);
             this.Controls.Add(this.pnlContainer);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnCancel);
@@ -316,5 +343,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbStylesheetFormat;
         private System.Windows.Forms.CheckBox chkUnitTests;
+        private System.Windows.Forms.Button btnSaveGlobal;
+        private System.Windows.Forms.Button btnRestore;
     }
 }

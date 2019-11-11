@@ -38,6 +38,8 @@ namespace Angular.Wizards
         internal ICollection<Utilities.ClassModel> SelectedDialogs { get; set; } = new List<Utilities.ClassModel>();
         public bool ShowDialogs { get; set; } = true;
 
+        internal bool ReloadSettings { get; set; } = false;
+
         private void CommonOptionsDialog_Shown(object sender, EventArgs e)
         {
             if (ShowApiServices)
@@ -104,7 +106,10 @@ namespace Angular.Wizards
             if(dialogResult == DialogResult.OK)
             {
                 // reload the possible items, perhaps close this dialog with a retry result?
+                ReloadSettings = true;
             }
+
+            settingsDialog.Close();
         }
     }
 }

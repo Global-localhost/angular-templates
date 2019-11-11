@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Angular.Wizards
             Service
         }
 
-        private readonly Utilities.Settings _settings = new Utilities.Settings();
+        private Utilities.Settings _settings = Utilities.Settings.LoadGlobal();
 
         private readonly IList<KeyValuePair<string, string>> _stringSeperators = new List<KeyValuePair<string, string>>()
         {
@@ -33,9 +34,9 @@ namespace Angular.Wizards
 
         private readonly IList<KeyValuePair<string, string>> _stylesheetFormat = new List<KeyValuePair<string, string>>()
         {
-            new KeyValuePair<string, string>("scss", "SASS" ),
-            new KeyValuePair<string, string>("less", "LESS" ),
-            new KeyValuePair<string, string>("css", "CSS" )
+            new KeyValuePair<string, string>("Scss", "SASS" ),
+            new KeyValuePair<string, string>("Less", "LESS" ),
+            new KeyValuePair<string, string>("Css", "CSS" )
         };
 
         public SettingsDialog()
@@ -101,11 +102,23 @@ namespace Angular.Wizards
 
             cmbStringQuote.SelectedValue = _settings.StringDelimiter;
             txtSelectorPrefix.Text = _settings.ComponentSelectorPrefix;
-            cmbStylesheetFormat.SelectedValue = _settings.StylesheetFormat.ToString().ToLower();
+            cmbStylesheetFormat.SelectedValue = _settings.StylesheetFormat.ToString();
             chkUnitTests.Checked = _settings.IncludeUnitTests;
+            chkApiSampleCode.Checked = _settings.ApiServiceSettings.IncludeSampleCode;
 
-            lstGroup.SelectedIndex = 0;
+            lstGroup.SelectedIndex = (int)SettingGroup.General;
+        }
 
+        private void BtnOk_Click(object sender, EventArgs e)
+        {
+            // save to settings file
+            _settings.StringDelimiter = cmbStringQuote.SelectedValue.ToString();
+            _settings.ComponentSelectorPrefix = txtSelectorPrefix.Text;
+            _settings.StylesheetFormat = (Utilities.Settings.StylesheetFormatType)Enum.Parse(typeof(Utilities.Settings.StylesheetFormatType), cmbStylesheetFormat.SelectedValue.ToString());
+            _settings.IncludeUnitTests = chkUnitTests.Checked;
+            _settings.ApiServiceSettings.IncludeSampleCode = chkApiSampleCode.Checked;
+
+            _settings.SaveAsGlobal();
         }
     }
 }

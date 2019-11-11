@@ -48,7 +48,7 @@ namespace Angular.Wizards.Page
             // the name of the files
             replacementsDictionary.Add("$tsFileName$", $"{string.Join("-", itemParts)}.page-component.ts");
             replacementsDictionary.Add("$htmlFileName$", $"{string.Join("-", itemParts)}.page-component.html");
-            replacementsDictionary.Add("$cssFileName$", $"{string.Join("-", itemParts)}.page-component.scss");
+            replacementsDictionary.Add("$cssFileName$", $"{string.Join("-", itemParts)}.page-component.{Settings.StylesheetFormat.ToString().ToLower()}");
 
             AddCommonReplacements(replacementsDictionary);
 

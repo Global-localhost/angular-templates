@@ -41,6 +41,9 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -84,10 +87,12 @@
     <Compile Include="Utilities\Naming.cs" />
     <Compile Include="Utilities\Path.cs" />
     <Compile Include="Utilities\Settings.cs" />
+    <Compile Include="Utilities\SettingsModels\ApiService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <None Include="key.pfx" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CommonOptionsDialog.resx">

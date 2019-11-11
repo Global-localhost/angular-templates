@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TemplateWizard;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,11 @@ namespace Angular.Wizards
         protected string _packageImports = "";
         protected string _serviceImports = "";
         protected string _ctorInjections = "";
-        protected Utilities.Settings Settings = new Utilities.Settings();
+        protected Utilities.Settings Settings = Utilities.Settings.LoadGlobal();
+
+        public BaseWizard()
+        {
+        }
 
         public virtual void BeforeOpeningFile(ProjectItem projectItem)
         {
@@ -51,6 +56,10 @@ namespace Angular.Wizards
             return true;
         }
 
+        /// <summary>
+        /// Adds replacements that are common and used throughout.
+        /// </summary>
+        /// <param name="replacementsDictionary"></param>
         protected void AddCommonReplacements(Dictionary<string, string> replacementsDictionary)
         {
             // settings
@@ -173,6 +182,9 @@ namespace Angular.Wizards
             System.Windows.Forms.DialogResult dialogResult = optionsDialog.ShowDialog();
             if (dialogResult != System.Windows.Forms.DialogResult.OK)
                 return false;
+
+            if (optionsDialog.ReloadSettings)
+                Settings = Utilities.Settings.LoadGlobal();
 
             return true;
         }
