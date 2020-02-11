@@ -60,7 +60,7 @@ namespace Angular.Wizards.MaterialDialog
 
             AddCommonReplacements(replacementsDictionary);
 
-            // additional constructor items - since we have no default items, remove the initial comma
+            // additional constructor items
             replacementsDictionary.Add("$constructorInjects$", _ctorInjections);
         }
     }
